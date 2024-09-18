@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locas Pépinière</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#home" class="logo">Locas Pépinière</a>
+            <div class="header-right">
+                <a href="#home" class="nav-link" data-section="home">Accueil</a>
+                <a href="#arbres" class="nav-link" data-section="arbres">Arbres</a>
+                <a href="#fleurs" class="nav-link" data-section="fleurs">Fleurs</a>
+                <a href="#materiels" class="nav-link" data-section="materiels">Matériels</a>
+                <a href="#panier" class="nav-link" data-section="panier" id="panier">Panier</a>
+                <p id="quantity">0</p>
+                <!-- Search Bar -->
+                <form action="/search" method="get" class="search-form">
+                    <input type="text" name="query" placeholder="Rechercher..." class="search-input" id="search-input">
+                    <button type="button" class="search-button" id="search-button">🔍</button>
+                </form>
+            </div>
+        </div>
+
+        <main id="main-content">
+            <div id="home-section" class="section">
+                <!-- Contenu pour la section Accueil -->
+                <div class="entete">
+                    <img src="images/pepiniere.jpg" alt="Panier" id="entete-image">
+                </div>
+                <div class="texte">
+                    <div class="image-texte-section">
+                        <div class="image-container">
+                            <img src="images/cactus.jpg" alt="Example descriptive image">
+                        </div>
+                        <div class="text-container">
+                            <div id="message-container" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: #d4edda; color: #155724; padding: 10px; border-radius: 5px;">
+                                Merci pour votre achat!
+                            </div>
+                            <h2>Support Sustainable Farming</h2>
+                            <p>
+                                I'm a paragraph. Click here to add your own text and edit me.<br>
+                                It’s easy. Just click “Edit Text” or double click me to add your own content and make
+                                changes to the font.<br>
+                                I’m a great place for you to tell a story and let your users know a little more about you.
+                            </p>
+                            <button>Magasiner</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="arbres-section" class="section" style="display: none;">
+                <div class="arbres-navigation">
+                    <button id="prev-arrow" class="arrow">⬅️</button>
+                    <div class="arbres">
+                        <!-- Les produits seront ajoutés ici par JavaScript -->
+                    </div>
+                    <button id="next-arrow" class="arrow">➡️</button>
+                </div>
+            </div>
+
+            <div id="fleurs-section" class="section" style="display: none;">
+                <!-- Contenu pour la section Fleurs -->
+            </div>
+
+            <div id="materiels-section" class="section" style="display: none;">
+                <!-- Contenu pour la section Matériels -->
+            </div>
+
+            <div id="details-section" class="section" style="display: none;">
+                <div id="details-content" class="details-content">
+                    <div id="stock-info" ></div>
+                    <label for="quantite">Quantité:</label>
+                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité" class="quantite">
+                    <button id="add-to-cart-button">Ajouter au panier</button>
+                    <!-- Les détails du produit seront insérés ici -->
+                </div>
+                <button id="close-details-button">Fermer</button>
+            </div>
+
+            <!-- Shopping Cart Section -->
+            <div id="panier-section" class="section" style="display: none;">
+                <h2>Panier</h2>
+                <table class="cart-items">
+                    <!-- Items will be dynamically added here -->
+                </table>
+                <div class="cart-total">
+                    <strong>Total: </strong><span class="cart-total-price">0.00</span>
+                </div>
+                <button class="btn btn-purchase" type="button" id="acheter-button"  >Acheter</button>
+            </div>
+
+            <div id="contact-section" class="section" style="display: none;">
+                <h2>Contactez-nous</h2>
+                <p>Nous sommes ravis de vous aider et de répondre à toutes vos questions !<br>
+                    Que vous ayez des préoccupations, des suggestions ou des demandes spécifiques, n'hésitez pas à nous
+                    contacter.</p>
+                <h2>Notre Adresse :</h2>
+                <p>
+                    Locas Pépinière<br>
+                    123 Avenue des Jardins<br>
+                    75000 Paris, France<br>
+                </p>
+
+                <div class="contact-info">
+                    <p><strong>Email :</strong></p>
+                    <a href="mailto:contact@locas-pepiniere.fr">contact@locas-pepiniere.fr</a>
+
+                    <p><strong>Téléphone :</strong></p>
+                    <p>438-329-2057</p>
+                </div>
+            </div>
+
+            <div id="garantie-section" class="section" style="display: none;">
+                <!-- Contenu pour la section Garantie -->
+            </div>
+        </main>
+
+        <footer>
+            <a href="#default" class="logo">Locas Pépinière</a>
+            <p>©2024 Locas Pépinière</p>
+            <a href="#contact" class="nav-link" data-section="contact">Contactez-nous</a>
+            <a href="#garantie" class="nav-link" data-section="garantie">Garantie</a>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

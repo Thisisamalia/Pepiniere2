@@ -1,0 +1,78 @@
+{
+    "produits": [
+      {
+        "nom": "Sapin",
+        "type": "arbre",
+        "prix": "40$",
+        "description": "https://fr.wikipedia.org/wiki/Sapin",
+        "image": "images/sapin-.jpg",
+        "informations": "Le genre Abies représente les sapins, des conifères aux aiguilles très régulières et aux cônes colorés. Leurs variétés naines ou plus hautes, mais compactes sont des résineux ornementaux précieux, à la silhouette soignée et sans entretien.",
+        "stock": 10
+      },
+      {
+        "nom": "Cactus",
+        "type": "arbre",
+        "prix": "100$",
+        "description": "https://fr.wikipedia.org/wiki/cactus",
+        "image":"images/cactus.jpg",
+        "stock": 20
+
+      },
+      {
+        "nom": "Pin",
+        "type": "arbre",
+        "prix": "50$",
+        "description": "https://fr.wikipedia.org/wiki/Pin_(plante)",
+        "image":"images/pin.jpg",
+        "stock": 10
+      },
+      {
+        "nom": "Pommier",
+        "type": "arbre",
+        "prix": "400$",
+        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+        "image":"images/pommier.jpg",
+        "stock": 25
+      },
+
+      {
+        "nom": "Palmier",
+        "type": "arbre",
+        "prix": "400$",
+        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+        "image":"images/palmier.jpg",
+        "stock": 30
+      },
+
+
+      {
+        "nom": "Cerisier",
+        "type": "arbre",
+        "prix": "400$",
+        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+        "image":"images/cerisier.jpg",
+        "stock": 40
+      },
+
+
+      {
+        "nom": "Palmier",
+        "type": "arbre",
+        "prix": "400$",
+        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+        "image":"images/palmier.jpg",
+        "stock": 5
+      },
+
+
+      {
+        "nom": "Palmier",
+        "type": "arbre",
+        "prix": "400$",
+        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+        "image":"images/palmier.jpg",
+        "stock": 2
+      }
+     
+    ]
+}
