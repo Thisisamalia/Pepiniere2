@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredProducts = []; // Tableau pour stocker les produits après filtrage
     let currentSection = 'home'; // Section actuellement affichée
     let cart = []; // Tableau pour stocker les produits ajoutés au panier
+    let exchangeRates = {}; // Tableau pour stocker le taux de change
 
     // Fonction pour rendre les produits sur la page courante
     function renderProducts(page) {
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const removeCell = document.createElement('td');
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Supprimer'; // Ajouter un bouton pour supprimer le produit du panier
-            removeButton.className = 'remove-button'; 
+            removeButton.className = 'remove-button';
             removeButton.addEventListener('click', () => { // Ajouter un écouteur d'événement pour le bouton de suppression
                 removeFromCart(item.nom);
             });
@@ -198,19 +199,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Votre panier est vide!');
         }
-       
+
     });
 
     // Fonction pour afficher les détails d'un produit
     function showProductDetails(produit) {
         const detailsSection = document.getElementById('details-section');
         const detailsContent = document.getElementById('details-content');
-    
+
         if (!detailsSection || !detailsContent) { // Si la section ou le contenu des détails n'existe pas
             console.error('Details section or content not found');
-            return; 
+            return;
         }
-    
+
         detailsContent.innerHTML = `
             <h2>${produit.nom}</h2>
             <img src="${produit.image}" alt="${produit.nom}" style="max-width: 100%; height: auto;">
@@ -222,15 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <p id="stock-info">Stock disponible : ${produit.stock || 'Non spécifié'}</p>
             <button id="add-to-cart-button">Ajouter au panier</button>
         `;
-    
+
         const quantiteProduit = document.getElementById('quantite');
         const btnPurchase = document.getElementById('add-to-cart-button');
-        
+
         // Fonction pour vérifier la quantité disponible
         function checkQuantity() { // Vérifier la quantité disponible
             const quantite = parseInt(quantiteProduit.value, 10) || 1; // Convertir la chaîne en nombre si l'utilisateur n'a pas entré de quantité elle-même elle sera de 1
             const stock = parseInt(produit.stock, 10) || 0; // Convertir la chaîne en nombre si l'utilisateur n'a pas entré de stock elle sera de 0
-    
+
             if (quantite > stock) { // Si la quantité est supérieure au stock disponible
                 btnPurchase.classList.add('add-to-cart-button-disabled'); // Ajouter le style disabled au bouton
                 btnPurchase.disabled = true;
@@ -239,12 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnPurchase.disabled = false;
             }
         }
-    
+
         // Vérifier la quantité initiale et mettre à jour l'état du bouton
         checkQuantity();
-    
+
         quantiteProduit.addEventListener('input', checkQuantity); // Ajouter un écouteur d'événement pour le champ de quantité
-    
+
         btnPurchase.addEventListener('click', () => { // Ajouter un écouteur d'événement pour le bouton d'achat
             const quantity = parseInt(quantiteProduit.value, 10) || 1; // Convertir la chaîne en nombre si l'utilisateur n'a pas entré de quantité elle sera de 1
             if (quantity <= (parseInt(produit.stock, 10) || 0)) { // Si la quantité demandée est inférieure ou égale au stock disponible
@@ -253,15 +254,173 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Quantité demandée dépasse le stock disponible'); // Afficher un message d'erreur si la quantité demandée dépasse le stock disponible
             }
         });
-    
+
         document.getElementById(currentSection + '-section').style.display = 'none'; // Cacher la section actuelle
         detailsSection.style.display = 'block'; // Afficher la section des détails
-    
-        const header = document.querySelector('.header'); 
+
+        const header = document.querySelector('.header');
         if (header) {
-            header.classList.add('header-disabled'); 
+            header.classList.add('header-disabled');
         }
     }
+
+    // Fonction pour récupérer l'adresse IP de l'utilisateur
+    function getUserIp() {
+        const url = 'https://api.ipify.org?format=json';
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const ip = data.ip;
+                console.log(`IP address: ${ip}`);
+
+                // Appel à l'API pour obtenir le pays et la monnaie en fonction de l'IP
+                return fetch(`https://ipapi.co/${ip}/json/`);
+            })
+            .then(response => response.json())
+            .then(data => {
+                const userCountry = data.country_name; // Nom du pays
+                const userCurrency = data.currency; // Code de la monnaie
+                console.log(`User Country: ${userCountry}`);
+                console.log(`User Currency: ${userCurrency}`);
+
+                // Peupler les comboboxes avec ces informations
+                populateComboboxes(userCountry, userCurrency);
+            })
+            .catch(error => console.error('Error fetching IP address or country info:', error));
+    }
+
+    // Fonction pour peupler les combobox de pays et de monnaies
+    function populateComboboxes(userCountry, userCurrency) {
+        fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                const countrySelect = document.getElementById('country-select');
+                const currencySelect = document.getElementById('currency-select');
+
+                // Objet pour mapper pays à devise
+                const countryCurrencyMap = {};
+
+                // Peupler le combobox de pays
+                countrySelect.innerHTML = '';
+                data.sort((a, b) => a.name.common.localeCompare(b.name.common)); // mettre en ordre alphabétique
+
+                data.forEach(country => { // Pour chaque pays
+                    const option = document.createElement('option');// Créer un élément d'option pour le pays
+                    option.value = country.cca2; // Code alpha-2
+                    option.text = country.name.common; // Nom du pays
+
+                    // Mapper le pays à sa devise
+                    if (country.currencies) { // Si le pays a des devises
+                        for (const currencyCode in country.currencies) { // Pour chaque devise du pays
+                            countryCurrencyMap[country.name.common] = currencyCode; // Ajouter au mapping
+                        }
+                    }
+
+                    // Sélection par défaut pour le pays basé sur l'IP
+                    if (country.name.common === userCountry) { // Si le pays correspond à l'IP
+                        option.selected = true; // Sélectionner l'option
+                    }
+
+                    countrySelect.appendChild(option); // Ajouter l'option au combobox
+                });
+
+                // Peupler le combobox de monnaies
+                currencySelect.innerHTML = ''; // Vider le combobox de devises
+                const existingCurrencies = new Set(); // Pour éviter les doublons
+                const currencyNames = {}; // Pour stocker les noms des devises
+
+                data.forEach(country => { // Pour chaque pays
+                    if (country.currencies) { // Si le pays a des devises
+                        for (const currencyCode in country.currencies) { // Pour chaque devise du pays
+                            existingCurrencies.add(currencyCode); // Ajouter au set
+                            currencyNames[currencyCode] = country.currencies[currencyCode].name; // Ajouter au mapping
+                        }
+                    }
+                });
+
+                // Ajouter les devises au combobox
+                existingCurrencies.forEach(currencyCode => {
+                    const option = document.createElement('option');
+                    option.value = currencyCode; // Code de la devise
+                    option.text = `${currencyCode} - ${currencyNames[currencyCode]}`;
+
+                    // Sélection par défaut pour la monnaie basée sur l'IP
+                    if (currencyCode === userCurrency) {
+                        option.selected = true;
+                    }
+
+                    currencySelect.appendChild(option);
+                });
+
+                // Lier le changement de pays à la mise à jour de la monnaie
+                changeCurrency(countrySelect, currencySelect, countryCurrencyMap);
+
+                // Écouter le changement de devise
+                currencySelect.addEventListener('change', (event) => {
+                    const selectedCurrency = event.target.value; // Récupérer la devise sélectionnée
+                    fetchExchangeRates(selectedCurrency); // Appeler la fonction pour récupérer les taux de change
+                });
+            })
+            .catch(error => console.error('Error loading JSON data:', error));
+    }
+  
+    function changeCurrency(countrySelect, currencySelect, countryCurrencyMap) {
+        countrySelect.addEventListener('change', () => { // Écouter le changement de pays
+            const selectedCountry = countrySelect.options[countrySelect.selectedIndex].text; // Obtenir le nom du pays sélectionné
+            const currencyCode = countryCurrencyMap[selectedCountry]; // Obtenir la devise associée au pays
+    
+            if (currencyCode) {
+                currencySelect.value = currencyCode; // Mettre à jour la devise sélectionnée
+                fetchExchangeRates(currencyCode); // Récupérer les taux de change pour la nouvelle devise
+            }
+        });
+    }
+
+    // Fonction pour récupérer les taux de change
+    function fetchExchangeRates(selectedCurrency) {
+        fetch('https://api.exchangerate-api.com/v4/latest/USD')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                exchangeRates = data.rates;
+                console.log('Exchange rates fetched:', exchangeRates);
+                updatePrices(selectedCurrency);
+            })
+            .catch(error => console.error('Error fetching exchange rates:', error));
+            
+    }
+    
+    
+   // Fonction pour mettre à jour les prix des produits en fonction du taux de change sélectionné et le pays sélectionné
+    function updatePrices(selectedCurrency) { // Mettre à jour les prix des produits
+        fetch('produits.json')
+            .then(response => response.json())
+            .then(data => {
+                const convertedProducts = data.produits.map(product => { // Convertir les prix en devise
+                    // Retirer le symbole '$' et convertir le prix en nombre
+                    const originalPrice = parseFloat(product.prix.replace('$', '')); // Convertir la chaîne en nombre
+                    const rate = exchangeRates[selectedCurrency]; // Obtenir le taux de change pour la devise sélectionnée
+                    const convertedPrice = (originalPrice * (rate || 1)).toFixed(2); // Calculer le prix converti
+                    
+                    // Vérifie si le taux de change existe
+                    if (rate) {
+                        return { ...product, prix: `${convertedPrice} ${selectedCurrency}` }; // Ajoute la devise ici
+                    } else {
+                        return { ...product, prix: `${originalPrice} $` }; // Garde le prix original si le taux n'est pas trouvé
+                    }
+                });
+                filteredProducts = convertedProducts; // Met à jour les produits filtrés avec les prix convertis
+                renderProducts(currentPage); // Rendre les produits avec les nouveaux prix
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    }
+    
+    
+    
     
     // Fonction pour charger les produits depuis un fichier JSON
     function fetchProducts() {
@@ -294,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //Fonction pour filtrer les produits en fonction de la catégorie sélectionnée
-    function filterByCategory(value) { 
+    function filterByCategory(value) {
         const buttons = document.querySelectorAll(".button-value");
         buttons.forEach(button => {
             button.classList.toggle("active", value.toUpperCase() === button.innerText.toUpperCase());
@@ -302,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterProducts(document.getElementById('search-input').value, value);
     }
 
-     //Fonction pour gérer la recherche des produits
+    //Fonction pour gérer la recherche des produits
     function handleSearch() {
         const searchInput = document.getElementById('search-input').value;
         const selectedCategory = Array.from(document.querySelectorAll('.button-value.active')).map(button => button.innerText)[0] || 'all';
@@ -344,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ajouter des écouteurs d'événements pour les liens de navigation
     document.querySelectorAll('.nav-link').forEach(link => { // Pour chaque lien de navigation
         link.addEventListener('click', (e) => { // Ajouter un écouteur d'événement pour le lien de navigation
-            e.preventDefault(); 
+            e.preventDefault();
             const sectionId = e.target.getAttribute('data-section');
             showSection(sectionId);
         });
@@ -381,6 +540,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('details-section').style.display = 'none';
         showSection(currentSection);
     });
+
+    getUserIp();
+    fetchExchangeRates();
 
     // Afficher la section d'accueil au chargement de la page et récupérer les produits
     showSection('home'); // Afficher la section d'accueil

@@ -4,41 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locas Pépinière</title>
+    <title id="title">Locas Pépinière</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-
-            <!-- top-right section for country, currency, language, & login -->
             <div class="header-top-right">
+                <p>Pays:</p>
                 <select id="country-select"></select>
+                <p>Monnaie:</p>
                 <select id="currency-select"></select>
-        
-                <!-- language -->
+
                 <div id="language-switch">
                     <label><input type="radio" name="language" value="fr" id="lang-fr"> Français</label>
                     <label><input type="radio" name="language" value="en" id="lang-en"> English</label>
                 </div>
-        
-                <!-- admin -->
-                <a href="#login" class="login-link">Login</a>
+
+                <a href="#login" class="login-link" id="login-link">Login</a>
             </div>
-        
-            <!-- navigation -->
+
             <div class="header-main">
-                <a href="#home" class="logo">Locas Pépinière</a>
+                <a href="#home" class="logo" id="logo-title">Locas Pépinière</a>
                 <div class="header-right">
-                    <a href="#home" class="nav-link" data-section="home">Accueil</a>
-                    <a href="#arbres" class="nav-link" data-section="arbres">Arbres</a>
-                    <a href="#fleurs" class="nav-link" data-section="fleurs">Fleurs</a>
-                    <a href="#materiels" class="nav-link" data-section="materiels">Matériels</a>
-                    <a href="#panier" class="nav-link" data-section="panier" id="panier">Panier</a>
+                    <a href="#home" class="nav-link" data-section="home" id="home-link">Accueil</a>
+                    <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link">Arbres</a>
+                    <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link">Fleurs</a>
+                    <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link">Matériels</a>
+                    <a href="#panier" class="nav-link" data-section="panier" id="cart-link">Panier</a>
                     <p id="quantity">0</p>
-        
-                    <!-- Search Bar -->
+
                     <form action="/search" method="get" class="search-form">
                         <input type="text" name="query" placeholder="Rechercher..." class="search-input" id="search-input">
                         <button type="button" class="search-button" id="search-button">🔍</button>
@@ -46,11 +42,9 @@
                 </div>
             </div>
         </div>
-        
 
         <main id="main-content">
             <div id="home-section" class="section">
-                <!-- Contenu pour la section Accueil -->
                 <div class="entete">
                     <img src="images/pepiniere.jpg" alt="Panier" id="entete-image">
                 </div>
@@ -62,17 +56,17 @@
                         <div class="text-container">
                             <div id="message-container"
                                 style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: #d4edda; color: #155724; padding: 10px; border-radius: 5px;">
-                                Merci pour votre achat!
+                                <span id="thank-you-message">Merci pour votre achat!</span>
                             </div>
-                            <h2>Support Sustainable Farming</h2>
-                            <p>
+                            <h2 id="support-title">Support Sustainable Farming</h2>
+                            <p id="support-paragraph">
                                 I'm a paragraph. Click here to add your own text and edit me.<br>
                                 It’s easy. Just click “Edit Text” or double click me to add your own content and make
                                 changes to the font.<br>
                                 I’m a great place for you to tell a story and let your users know a little more about
                                 you.
                             </p>
-                            <button>Magasiner</button>
+                            <button id="shop-button">Magasiner</button>
                         </div>
                     </div>
                 </div>
@@ -100,17 +94,14 @@
                 <div id="details-content" class="details-content">
                     <div id="stock-info"></div>
                     <label for="quantite">Quantité:</label>
-                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité"
-                        class="quantite">
+                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité" class="quantite">
                     <button id="add-to-cart-button">Ajouter au panier</button>
-                    <!-- Les détails du produit seront insérés ici -->
                 </div>
                 <button id="close-details-button">Fermer</button>
             </div>
 
-            <!-- Shopping Cart Section -->
             <div id="panier-section" class="section" style="display: none;">
-                <h2>Panier</h2>
+                <h2 id="cart-title">Panier</h2>
                 <table class="cart-items">
                     <!-- Items will be dynamically added here -->
                 </table>
@@ -122,7 +113,7 @@
 
             <div id="contact-section" class="section" style="display: none;">
                 <h2>Contactez-nous</h2>
-                <p>Nous sommes ravis de vous aider et de répondre à toutes vos questions !<br>
+                <p id="contact-message">Nous sommes ravis de vous aider et de répondre à toutes vos questions !<br>
                     Que vous ayez des préoccupations, des suggestions ou des demandes spécifiques, n'hésitez pas à nous
                     contacter.</p>
                 <h2>Notre Adresse :</h2>

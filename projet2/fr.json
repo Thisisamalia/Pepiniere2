@@ -1,0 +1,40 @@
+{
+    "fr": {
+        "title": "Locas Pépinière",
+        "login": "Connexion",
+        "home": "Accueil",
+        "trees": "Arbres",
+        "flowers": "Fleurs",
+        "materials": "Matériels",
+        "cart": "Panier",
+        "thankYouMessage": "Merci pour votre achat!",
+        "supportTitle": "Soutenez l'agriculture durable",
+        "supportParagraph": "Je suis un paragraphe. Cliquez ici pour ajouter votre propre texte et modifiez-moi.",
+        "shopButton": "Magasiner",
+        "cartTitle": "Panier",
+        "contactMessage": "Nous sommes ravis de vous aider et de répondre à toutes vos questions !",
+        "email": "Email :",
+        "phone": "Téléphone :",
+        "purchaseButton": "Acheter",
+        "closeButton": "Fermer"
+    },
+    "en": {
+        "title": "Locas Pépinière",
+        "login": "Login",
+        "home": "Home",
+        "trees": "Trees",
+        "flowers": "Flowers",
+        "materials": "Materials",
+        "cart": "Cart",
+        "thankYouMessage": "Thank you for your purchase!",
+        "supportTitle": "Support Sustainable Farming",
+        "supportParagraph": "I'm a paragraph. Click here to add your own text and edit me.",
+        "shopButton": "Shop",
+        "cartTitle": "Cart",
+        "contactMessage": "We are happy to assist you with any questions!",
+        "email": "Email:",
+        "phone": "Phone:",
+        "purchaseButton": "Purchase",
+        "closeButton": "Close"
+    }
+}
