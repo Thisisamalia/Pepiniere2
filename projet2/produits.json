@@ -10,7 +10,7 @@
         "stock": 10
       },
       {
-        "nom": "Cactus",
+        "nom": "Cactus", 
         "type": "arbre",
         "prix": "100",
         "description": "https://fr.wikipedia.org/wiki/cactus",
