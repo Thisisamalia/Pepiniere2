@@ -18,11 +18,13 @@
                 <select id="currency-select"></select>
 
                 <div id="language-switch">
-                    <label><input type="radio" name="language" value="fr" id="lang-fr" class="lang-radio"> Français</label>
-                    <label><input type="radio" name="language" value="en" id="lang-en" class="lang-radio"> English</label>
+                    <label><input type="radio" name="language" value="fr" id="lang-fr" class="lang-radio">
+                        Français</label>
+                    <label><input type="radio" name="language" value="en" id="lang-en" class="lang-radio">
+                        English</label>
                 </div>
 
-                <a href="#login" class="login-link" id="login-section" >Admin</a>
+                <a href="#login" class="login-link" id="login-section">Admin</a>
             </div>
 
             <div class="header-main">
@@ -32,11 +34,14 @@
                     <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link">Arbres</a>
                     <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link">Fleurs</a>
                     <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link">Matériels</a>
-                    <a href="#panier" class="nav-link" data-section="panier" id="cart-link">Panier <p id="quantity">0</p></a>
-                    
+                    <a href="#panier" class="nav-link" data-section="panier" id="cart-link">
+                        <img src="images/cart.svg" alt="Panier" class="panier-image">
+                        <p id="quantity">0</p>
+                    </a>
 
-                    <form action="/search" method="get" class="search-form" >
-                        <input type="text" name="query" placeholder="Rechercher..." class="search-input" id="search-input">
+                    <form action="/search" method="get" class="search-form">
+                        <input type="text" name="query" placeholder="Rechercher..." class="search-input"
+                            id="search-input">
                         <button type="button" class="search-button" id="search-button">🔍</button>
                     </form>
                 </div>
@@ -94,7 +99,8 @@
                 <div id="details-content" class="details-content">
                     <div id="stock-info"></div>
                     <label for="quantite" id="quantite-label">Quantité:</label>
-                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité" class="quantite">
+                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité"
+                        class="quantite">
                     <button id="add-to-cart-button">Ajouter au panier</button>
                 </div>
                 <button id="close-details-button">Fermer</button>
