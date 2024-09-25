@@ -66,6 +66,11 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+button, .header a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
@@ -127,7 +132,8 @@ body {
     font-size: 14px;
 }
 
-#country-select, #currency-select {
+#country-select,
+#currency-select {
     padding: 5px;
     border-radius: 4px;
     font-size: 14px;
@@ -138,23 +144,29 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-  }
-  
-  .panier-image {
-    width: 50px; /* Set the size of the image */
+}
+
+.panier-image {
+    width: 50px;
+    /* Set the size of the image */
     height: 50px;
-  }
-  
-  #quantity {
+}
+
+#quantity {
     position: absolute;
-    left: 50%; /* Move to the center horizontally */
-    top: 50%;  /* Move to the center vertically */
-    transform: translate(-50%, -50%); /* Adjust positioning */
-    font-size: 16px; /* Adjust text size */
-    color: white; /* Adjust color if needed */
+    left: 50%;
+    /* Move to the center horizontally */
+    top: 50%;
+    /* Move to the center vertically */
+    transform: translate(-50%, -50%);
+    /* Adjust positioning */
+    font-size: 16px;
+    /* Adjust text size */
+    color: white;
+    /* Adjust color if needed */
     text-align: center;
-  }
-  
+}
+
 
 /* Language Switch */
 #language-switch label {
@@ -597,13 +609,18 @@ footer a:hover {
         padding: 5px;
     }
 
-    .produit {
-        width: calc(50% - 20px);
+    .arbres {
+        flex-direction: column;
     }
 
-    .menu-contextuel {
-        max-width: 100%;
+    .produit {
+        width: 100%;
     }
+}
+
+.menu-contextuel {
+    max-width: 100%;
+}
 }
 
 @media screen and (max-width: 480px) {
