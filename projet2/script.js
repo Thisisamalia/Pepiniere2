@@ -535,11 +535,19 @@ document.querySelectorAll('.lang-radio').forEach(radio => {
     }
 
     // Ajouter des écouteurs d'événements pour les liens de navigation
-    document.querySelectorAll('.nav-link').forEach(link => { // Pour chaque lien de navigation
-        link.addEventListener('click', (e) => { // Ajouter un écouteur d'événement pour le lien de navigation
+    document.querySelectorAll('.nav-link').forEach(link => { 
+        // Pour chaque lien de navigation
+        link.addEventListener('click', (e) => { 
             e.preventDefault();
+    
             const sectionId = e.target.getAttribute('data-section');
-            showSection(sectionId);
+            showSection(sectionId); // Appel à la fonction showSection existante
+    
+            // Scroll vers le haut de la page
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
 
@@ -581,4 +589,31 @@ document.querySelectorAll('.lang-radio').forEach(radio => {
     // Afficher la section d'accueil au chargement de la page et récupérer les produits
     showSection('home'); // Afficher la section d'accueil
     fetchProducts();// Charger les produits depuis le fichier JSON
+
+// menu burger adaptatif
+const burgerMenu = document.getElementById('burger-menu');
+const navMenu = document.querySelector('.nav-menu'); 
+const closeMenu = document.getElementById('close-menu');
+const headerTopRight = document.querySelector('.header-top-right');
+
+burgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    headerTopRight.classList.toggle('show'); // Include header-top-right in the menu
 });
+
+// Close menu on close button click
+closeMenu.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+    headerTopRight.classList.remove('show'); // Hide header-top-right when closing
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    const isClickInside = navMenu.contains(event.target) || burgerMenu.contains(event.target);
+    if (!isClickInside) {
+        navMenu.classList.remove('show');
+        headerTopRight.classList.remove('show'); // Hide header-top-right when clicking outside
+    }
+});
+
+})
