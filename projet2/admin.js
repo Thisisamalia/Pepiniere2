@@ -15,11 +15,11 @@
     const errorMessage = document.getElementById('login-error-message');
     
     // Affiche le formulaire de connexion quand on clique sur le lien Admin (h ref admin)
-    document.getElementById('admin-login-link').addEventListener('click', (e) => {
+    document.getElementById('login-section').addEventListener('click', (e) => {
         e.preventDefault();
         loginSection.style.display = 'block';
     });
-
+    
     // PRENDRE LES VALEURS INSCRITE AU FORM
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
