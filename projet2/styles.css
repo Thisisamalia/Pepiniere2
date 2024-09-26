@@ -140,33 +140,34 @@ button, .header a {
     border: 1px solid #ccc;
 }
 
+/* Cart Link Styling */
+
 #cart-link {
-    display: flex;
+    display: inline-flex; 
+    justify-content: center;
     align-items: center;
+    width: auto; 
+    height: 30px;
     position: relative;
+    text-align: center;
 }
 
+/* Cart Image Styling */
 .panier-image {
-    width: 50px;
-    /* Set the size of the image */
-    height: 50px;
+    width: auto; 
+    height: 70px;
 }
 
 #quantity {
     position: absolute;
-    left: 50%;
-    /* Move to the center horizontally */
-    top: 50%;
-    /* Move to the center vertically */
+    top: 19.5%;
+    left: 53.5%;
     transform: translate(-50%, -50%);
-    /* Adjust positioning */
     font-size: 16px;
-    /* Adjust text size */
     color: white;
-    /* Adjust color if needed */
     text-align: center;
+    font-weight: bold;
 }
-
 
 /* Language Switch */
 #language-switch label {
@@ -621,7 +622,8 @@ footer a:hover {
 .menu-contextuel {
     max-width: 100%;
 }
-}
+
+
 
 @media screen and (max-width: 480px) {
     .produit {
