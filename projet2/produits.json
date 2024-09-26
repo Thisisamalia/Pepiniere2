@@ -1,78 +1,166 @@
 {
-    "produits": [
-      {
-        "nom": "Sapin",
-        "type": "arbre",
-        "prix": "40",
-        "description": "https://fr.wikipedia.org/wiki/Sapin",
-        "image": "images/sapin-.jpg",
-        "informations": "Le genre Abies représente les sapins, des conifères aux aiguilles très régulières et aux cônes colorés. Leurs variétés naines ou plus hautes, mais compactes sont des résineux ornementaux précieux, à la silhouette soignée et sans entretien.",
-        "stock": 10
-      },
-      {
-        "nom": "Cactus",
-        "type": "arbre",
-        "prix": "100",
-        "description": "https://fr.wikipedia.org/wiki/cactus",
-        "image":"images/cactus.jpg",
-        "stock": 20
-
-      },
-      {
-        "nom": "Pin",
-        "type": "arbre",
-        "prix": "50",
-        "description": "https://fr.wikipedia.org/wiki/Pin_(plante)",
-        "image":"images/pin.jpg",
-        "stock": 10
-      },
-      {
-        "nom": "Pommier",
-        "type": "arbre",
-        "prix": "400",
-        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
-        "image":"images/pommier.jpg",
-        "stock": 25
-      },
-
-      {
-        "nom": "Palmier",
-        "type": "arbre",
-        "prix": "400",
-        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
-        "image":"images/palmier.jpg",
-        "stock": 30
-      },
-
-
-      {
-        "nom": "Cerisier",
-        "type": "arbre",
-        "prix": "400",
-        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
-        "image":"images/cerisier.jpg",
-        "stock": 40
-      },
-
-
-      {
-        "nom": "Palmier",
-        "type": "arbre",
-        "prix": "400",
-        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
-        "image":"images/palmier.jpg",
-        "stock": 5
-      },
-
-
-      {
-        "nom": "Palmier",
-        "type": "arbre",
-        "prix": "400",
-        "description": "https://fr.wikipedia.org/wiki/Arecaceae",
-        "image":"images/palmier.jpg",
-        "stock": 2
-      }
-     
-    ]
+  "produits": [
+    {
+      "nom": "Sapin",
+      "type": "arbre",
+      "prix": "40",
+      "description": "https://fr.wikipedia.org/wiki/Sapin",
+      "image": "images/sapin-.jpg",
+      "informations": "Le genre Abies représente les sapins, des conifères aux aiguilles très régulières et aux cônes colorés. Leurs variétés naines ou plus hautes, mais compactes sont des résineux ornementaux précieux, à la silhouette soignée et sans entretien.",
+      "stock": 10
+    },
+    {
+      "nom": "Cactus", 
+      "type": "arbre",
+      "prix": "100",
+      "description": "https://fr.wikipedia.org/wiki/Cactus",
+      "image": "images/cactus.jpg",
+      "informations": "Les cactus sont des plantes adaptées aux milieux arides. Ils se caractérisent par leurs tiges succulentes, souvent épineuses, et leurs fleurs aux formes variées.",
+      "stock": 20
+    },
+    {
+      "nom": "Pin",
+      "type": "arbre",
+      "prix": "50",
+      "description": "https://fr.wikipedia.org/wiki/Pin_(plante)",
+      "image": "images/pin.jpg",
+      "informations": "Le pin est un genre de conifères très répandu dans l'hémisphère nord. Il est utilisé pour le bois, les résines et les paysages ornementaux.",
+      "stock": 10
+    },
+    {
+      "nom": "Pommier",
+      "type": "arbre",
+      "prix": "400",
+      "description": "https://fr.wikipedia.org/wiki/Pommier",
+      "image": "images/pommier.jpg",
+      "informations": "Le pommier est un arbre fruitier populaire produisant des pommes. Il est cultivé dans de nombreuses régions du monde pour ses fruits.",
+      "stock": 25
+    },
+    {
+      "nom": "Palmier",
+      "type": "arbre",
+      "prix": "400",
+      "description": "https://fr.wikipedia.org/wiki/Arecaceae",
+      "image": "images/palmier.jpg",
+      "informations": "Les palmiers appartiennent à la famille des Arecaceae et sont typiques des climats tropicaux et subtropicaux. Ils sont souvent utilisés comme plantes ornementales.",
+      "stock": 30
+    },
+    {
+      "nom": "Cerisier",
+      "type": "arbre",
+      "prix": "400",
+      "description": "https://fr.wikipedia.org/wiki/Cerisier",
+      "image": "images/cerisier.jpg",
+      "informations": "Le cerisier est un arbre produisant des cerises. Il est cultivé pour ses fruits sucrés ou acides et pour son bois précieux.",
+      "stock": 40
+    },
+    {
+      "nom": "Tulipe",
+      "type": "fleurs",
+      "prix": "20",
+      "description": "https://fr.wikipedia.org/wiki/Tulipe",
+      "image": "images/tulipe.jpg",
+      "informations": "La tulipe est une fleur vivace populaire pour ses couleurs vives et sa grande variété. Elle est souvent cultivée dans les jardins et symbolise le printemps.",
+      "stock": 50
+    },
+    {
+      "nom": "Rose",
+      "type": "fleurs",
+      "prix": "30",
+      "description": "https://fr.wikipedia.org/wiki/Rose",
+      "image": "images/rose.jpg",
+      "informations": "La rose est l'une des fleurs les plus connues dans le monde. Elle est appréciée pour sa beauté, son parfum, et sa symbolique forte dans diverses cultures.",
+      "stock": 100
+    },
+    {
+      "nom": "Lys",
+      "type": "fleurs",
+      "prix": "25",
+      "description": "https://fr.wikipedia.org/wiki/Lys",
+      "image": "images/lys.jpg",
+      "informations": "Le lys est une fleur élégante, souvent associée à la pureté et à la royauté. Elle est utilisée dans des compositions florales et cérémoniales.",
+      "stock": 75
+    },
+    {
+      "nom": "Marguerite",
+      "type": "fleurs",
+      "prix": "15",
+      "description": "https://fr.wikipedia.org/wiki/Marguerite_(plante)",
+      "image": "images/marguerite.jpg",
+      "informations": "La marguerite est une plante à fleurs blanches et jaunes, très commune dans les prairies et les jardins. Elle symbolise l'innocence et la simplicité.",
+      "stock": 60
+    },
+    {
+      "nom": "Orchidée",
+      "type": "fleurs",
+      "prix": "35",
+      "description": "https://fr.wikipedia.org/wiki/Orchidée",
+      "image": "images/orchidee.jpg",
+      "informations": "Les orchidées sont des fleurs exotiques aux formes variées et aux couleurs vives. Elles sont prisées pour leur beauté unique et leur longue durée de vie.",
+      "stock": 40
+    },
+    {
+      "nom": "Violette",
+      "type": "fleurs",
+      "prix": "18",
+      "description": "https://fr.wikipedia.org/wiki/Violette",
+      "image": "images/violette.jpg",
+      "informations": "La violette est une petite fleur parfumée qui pousse souvent dans des conditions ombragées. Elle est utilisée en parfumerie et en décoration.",
+      "stock": 80
+    },
+    {
+      "nom": "Pelle de jardinage",
+      "type": "materiels",
+      "prix": "15",
+      "description": "https://fr.wikipedia.org/wiki/Pelle",
+      "image": "images/pelle.jpg",
+      "informations": "La pelle de jardinage est un outil manuel utilisé pour creuser et déplacer la terre ou d'autres matériaux.",
+      "stock": 150
+    },
+    {
+      "nom": "Sécateur",
+      "type": "materiels",
+      "prix": "25",
+      "description": "https://fr.wikipedia.org/wiki/Sécateur",
+      "image": "images/secateur.jpg",
+      "informations": "Le sécateur est un outil de coupe essentiel pour la taille des plantes et des arbustes. Il permet de couper les branches de manière nette et précise.",
+      "stock": 100
+    },
+    {
+      "nom": "Tondeuse",
+      "type": "materiels",
+      "prix": "200",
+      "description": "https://fr.wikipedia.org/wiki/Tondeuse_%C3%A0_gazon",
+      "image": "images/tondeuse.jpg",
+      "informations": "La tondeuse à gazon est un appareil motorisé ou manuel utilisé pour couper l'herbe et entretenir les pelouses.",
+      "stock": 20
+    },
+    {
+      "nom": "Arrosoir",
+      "type": "materiels",
+      "prix": "10",
+      "description": "https://fr.wikipedia.org/wiki/Arrosoir",
+      "image": "images/arrosoir.jpg",
+      "informations": "L'arrosoir est un récipient utilisé pour arroser les plantes manuellement. Il est muni d'un bec pour un arrosage précis.",
+      "stock": 200
+    },
+    {
+      "nom": "Gants de jardinage",
+      "type": "materiels",
+      "prix": "8",
+      "description": "https://fr.wikipedia.org/wiki/Gants_de_jardinage",
+      "image": "images/gants.jpg",
+      "informations": "Les gants de jardinage protègent les mains des coupures, épines et saletés lors du travail dans le jardin.",
+      "stock": 300
+    },
+    {
+      "nom": "Brouette",
+      "type": "materiels",
+      "prix": "60",
+      "description": "https://fr.wikipedia.org/wiki/Brouette",
+      "image": "images/brouette.jpg",
+      "informations": "La brouette est un véhicule à une roue utilisé pour transporter des matériaux tels que la terre, le sable ou les outils dans le jardin.",
+      "stock": 40
+    }
+  ]
 }

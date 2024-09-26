@@ -6,101 +6,98 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSection = 'home'; // Section actuellement affichée
     let cart = []; // Tableau pour stocker les produits ajoutés au panier
     let exchangeRates = {}; // Tableau pour stocker le taux de change
-
+    let language = 'fr'; // Langue actuelle
+   
     // Fonction pour rendre les produits sur la page courante
     function renderProducts(page) {
         console.log(`Rendering products for page ${page}`);
-
-        // Calculer l'index de début et de fin pour la page courante
+    
         const start = page * itemsPerPage; // Début de la page courante
         const end = start + itemsPerPage; // Fin de la page courante
-        // Sélectionner les produits visibles pour la page courante
         const visibleProducts = filteredProducts.slice(start, end);
-
-        // Sélectionner la section des arbres dans la page
+    
         const arbresSection = document.querySelector('#arbres-section .arbres');
         arbresSection.innerHTML = '';
-
-        // Vérifier si des produits sont disponibles
+    
         if (visibleProducts.length === 0) {
-            arbresSection.innerHTML = '<p>No products available</p>';
+            arbresSection.innerHTML = '<p id="arbresSection">No products available</p>';
         } else {
-            // Créer et afficher les produits sur la page
-            visibleProducts.forEach(produit => { // Pour chaque produit visible
+            visibleProducts.forEach((produit, index) => { // Ajouter index ici
                 const produitDiv = document.createElement('div');
                 produitDiv.className = 'produit';
-
-                const img = document.createElement('img'); // Créer l'image du produit
+    
+                const img = document.createElement('img');
                 img.src = produit.image;
                 img.alt = produit.nom;
                 produitDiv.appendChild(img);
-
-                const infoDiv = document.createElement('div'); // Créer la section des informations du produit
+    
+                const infoDiv = document.createElement('div');
                 infoDiv.className = 'info';
-
-                const name = document.createElement('h2'); // Créer le nom du produit
+    
+                const name = document.createElement('h2');
                 name.textContent = produit.nom;
                 infoDiv.appendChild(name);
-
+    
                 const price = document.createElement('p'); // Créer le prix du produit
-                price.textContent = `Prix: ${produit.prix}`; //utilisation du fichier produits.json
+                price.textContent = `Prix: ${produit.prix}`; // Utilisation du fichier produits.json
+                price.id = `price-${index}`; // Utilisation de backticks
                 infoDiv.appendChild(price);
-
+    
                 // Création du menu contextuel pour chaque produit
                 const menuContextuel = document.createElement('div');
                 menuContextuel.className = 'menu-contextuel';
                 menuContextuel.style.display = 'none';
-
-                const detailsLink = document.createElement('a');// Créer un lien pour les détails du produit
+    
+                const detailsLink = document.createElement('a');
                 detailsLink.textContent = 'Détails';
+                detailsLink.id = `detailsLink-${index}`; // Utilisation de backticks
                 detailsLink.href = "#";
                 menuContextuel.appendChild(detailsLink);
-
-                const addButton = document.createElement('button');// Créer un bouton pour ajouter au panier
+    
+                const addButton = document.createElement('button');
                 addButton.textContent = 'Ajouter';
+                addButton.id = `addButton-${index}`; // Utilisation de backticks
                 menuContextuel.appendChild(addButton);
-
-                const type = document.createElement('p');// Créer le type de produit
-                type.textContent = `Type: ${produit.type}`; //utilisation du fichier produits.json
+    
+                const type = document.createElement('p');
+                type.textContent = `Type: ${produit.type}`;
                 menuContextuel.appendChild(type);
-
-                const descriptionLink = document.createElement('a'); // Créer un lien vers la description du produit
+    
+                const descriptionLink = document.createElement('a');
                 descriptionLink.textContent = 'Description';
                 descriptionLink.href = produit.description;
-                descriptionLink.target = '_blank'; // Ouvrir le lien dans une nouvelle fenêtre
+                descriptionLink.id = `descriptionLink-${index}`; // Utilisation de backticks
+                descriptionLink.target = '_blank';
                 menuContextuel.appendChild(descriptionLink);
-
-                produitDiv.appendChild(infoDiv); // Ajouter les informations du produit au DOM
-                produitDiv.appendChild(menuContextuel); // Ajouter le menu contextuel au DOM
-
-                // Ajouter des écouteurs d'événements pour afficher les détails du produit
+    
+                produitDiv.appendChild(infoDiv);
+                produitDiv.appendChild(menuContextuel);
+    
                 produitDiv.addEventListener('click', (event) => {
-                    //event.stopPropagation();
                     showProductDetails(produit);
                 });
-
-                produitDiv.addEventListener('mouseenter', () => { // Afficher le menu contextuel au survol
+    
+                produitDiv.addEventListener('mouseenter', () => {
                     menuContextuel.style.display = 'block';
                 });
-
-                produitDiv.addEventListener('mouseleave', () => { // Cacher le menu contextuel au survol
+    
+                produitDiv.addEventListener('mouseleave', () => {
                     menuContextuel.style.display = 'none';
                 });
-
-                addButton.addEventListener('click', (event) => {// Ajouter au panier au click
+    
+                addButton.addEventListener('click', (event) => {
                     event.stopPropagation();
                     addToCart(produit);
                 });
-
-                arbresSection.appendChild(produitDiv); // Ajouter le produit au DOM
+    
+                arbresSection.appendChild(produitDiv);
             });
         }
-
-        // Activer ou désactiver les flèches de pagination en fonction de la page courante
+    
         document.getElementById('prev-arrow').disabled = currentPage === 0;
         document.getElementById('next-arrow').disabled = end >= filteredProducts.length;
     }
-
+    
     // Fonction pour ajouter un produit au panier
     function addToCart(produit, quantity = 1) { // Ajouter un produit au panier
         for (let i = 0; i < quantity; i++) { // itérer le nombre de fois indiqué par l'utilisateur
@@ -152,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const removeCell = document.createElement('td');
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Supprimer'; // Ajouter un bouton pour supprimer le produit du panier
+            removeButton.id = 'removeButton';
             removeButton.className = 'remove-button';
             removeButton.addEventListener('click', () => { // Ajouter un écouteur d'événement pour le bouton de suppression
                 removeFromCart(item.nom);
@@ -170,10 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const finalAmount = totalPrice + tps + tvq; // Calculer le montant total
 
         cartTotal.innerHTML = ` 
-            <p>Total avant taxes: ${totalPrice.toFixed(2)} $</p>
-            <p>TPS (5%): ${tps.toFixed(2)} $</p>
-            <p>TVQ (9.975%): ${tvq.toFixed(2)} $</p>
-            <p>Total à payer: ${finalAmount.toFixed(2)} $</p>
+            <p id=cartTotal>Total avant taxes: ${totalPrice.toFixed(2)} $</p>
+            <p id=tps>TPS (5%): ${tps.toFixed(2)} $</p>
+            <p>TVQ id=tvq (9.975%): ${tvq.toFixed(2)} $</p>
+            <p id=finalAmount>Total à payer: ${finalAmount.toFixed(2)} $</p>
         `;
     }
 
@@ -263,6 +261,42 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.add('header-disabled');
         }
     }
+
+// Changement de langue
+document.querySelectorAll('.lang-radio').forEach(radio => { 
+    radio.addEventListener('change', function() {
+        const lang = this.value; // 'fr' ou 'en'
+        fetch('translations.json')
+            .then(response => response.json())
+            .then(data => {
+                const translations = data[lang];
+
+                // Mise à jour des traductions
+                for (let key in translations) {
+                    const elements = document.querySelectorAll(`[id^="${key}"]`);
+                    elements.forEach(element => {
+                        element.textContent = translations[key];
+                    });
+                }
+
+                // Mettre à jour les prix
+                const priceElements = document.querySelectorAll('[id^="price-"]');
+                priceElements.forEach(priceElement => {
+                    const produitIndex = priceElement.id.split('-')[1]; // Obtenir l'index du produit
+                    const produit = filteredProducts[parseInt(produitIndex, 10)]; // Récupérer le produit
+
+                    if (produit) {
+                        priceElement.textContent = `${translations.priceLabel} ${produit.prix}`; // Format correct
+                    } else {
+                        console.log(`Aucun produit trouvé à l'index: ${produitIndex}`);
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading JSON data:', error));
+    });
+});
+
+
 
     // Fonction pour récupérer l'adresse IP de l'utilisateur
     function getUserIp() {
@@ -501,11 +535,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Ajouter des écouteurs d'événements pour les liens de navigation
-    document.querySelectorAll('.nav-link').forEach(link => { // Pour chaque lien de navigation
-        link.addEventListener('click', (e) => { // Ajouter un écouteur d'événement pour le lien de navigation
+    document.querySelectorAll('.nav-link').forEach(link => { 
+        // Pour chaque lien de navigation
+        link.addEventListener('click', (e) => { 
             e.preventDefault();
+    
             const sectionId = e.target.getAttribute('data-section');
-            showSection(sectionId);
+            showSection(sectionId); // Appel à la fonction showSection existante
+    
+            // Scroll vers le haut de la page
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
 
@@ -547,4 +589,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Afficher la section d'accueil au chargement de la page et récupérer les produits
     showSection('home'); // Afficher la section d'accueil
     fetchProducts();// Charger les produits depuis le fichier JSON
+
+// menu burger adaptatif
+const burgerMenu = document.getElementById('burger-menu');
+const navMenu = document.querySelector('.nav-menu'); 
+const closeMenu = document.getElementById('close-menu');
+const headerTopRight = document.querySelector('.header-top-right');
+
+burgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    headerTopRight.classList.toggle('show');
 });
+
+// Close menu on close button click
+closeMenu.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+    headerTopRight.classList.remove('show');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    const isClickInside = navMenu.contains(event.target) || burgerMenu.contains(event.target);
+    if (!isClickInside) {
+        navMenu.classList.remove('show');
+        headerTopRight.classList.remove('show'); 
+    }
+});
+
+})

@@ -11,37 +11,48 @@
 <body>
     <div class="container">
         <div class="header">
+        
             <div class="header-top-right">
-                <p>Pays:</p>
+                <p id="pays">Pays:</p>
                 <select id="country-select"></select>
-                <p>Monnaie:</p>
+                <p id="monnaie">Monnaie:</p>
                 <select id="currency-select"></select>
-
+        
                 <div id="language-switch">
-                    <label><input type="radio" name="language" value="fr" id="lang-fr"> Français</label>
-                    <label><input type="radio" name="language" value="en" id="lang-en"> English</label>
+                    <label><input type="radio" name="language" value="fr" id="lang-fr" class="lang-radio">
+                        Français</label>
+                    <label><input type="radio" name="language" value="en" id="lang-en" class="lang-radio">
+                        English</label>
                 </div>
-
-                <a href="#login" class="login-link" id="login-link">Login</a>
+        
+                <a href="#login" class="login-link" id="login-section">Admin</a>
             </div>
-
+        
             <div class="header-main">
+                <div id="burger-menu" class="burger-menu">☰</div>
+
                 <a href="#home" class="logo" id="logo-title">Locas Pépinière</a>
                 <div class="header-right">
-                    <a href="#home" class="nav-link" data-section="home" id="home-link">Accueil</a>
-                    <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link">Arbres</a>
-                    <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link">Fleurs</a>
-                    <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link">Matériels</a>
-                    <a href="#panier" class="nav-link" data-section="panier" id="cart-link">Panier</a>
-                    <p id="quantity">0</p>
-
-                    <form action="/search" method="get" class="search-form">
-                        <input type="text" name="query" placeholder="Rechercher..." class="search-input" id="search-input">
-                        <button type="button" class="search-button" id="search-button">🔍</button>
-                    </form>
+                    <nav class="nav-menu" id="nav-menu">
+                        <div class="close-menu" id="close-menu">✖</div>
+                        <a href="#home" class="nav-link" data-section="home" id="home-link">Accueil</a>
+                        <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link">Arbres</a>
+                        <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link">Fleurs</a>
+                        <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link">Matériels</a>
+                        <a href="#panier" class="nav-link" data-section="panier" id="cart-link">
+                            <img src="images/cart.svg" alt="Panier" class="panier-image">
+                            <p id="quantity">0</p>
+                        </a>
+                        <form action="/search" method="get" class="search-form">
+                            <input type="text" name="query" placeholder="Rechercher..." class="search-input" id="search-input">
+                            <button type="button" class="search-button" id="search-button">🔍</button>
+                        </form>
+                    </nav>
                 </div>
             </div>
         </div>
+        
+        
 
         <main id="main-content">
             <div id="home-section" class="section">
@@ -93,8 +104,9 @@
             <div id="details-section" class="section" style="display: none;">
                 <div id="details-content" class="details-content">
                     <div id="stock-info"></div>
-                    <label for="quantite">Quantité:</label>
-                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité" class="quantite">
+                    <label for="quantite" id="quantite-label">Quantité:</label>
+                    <input type="number" id="quantite" name="quantite" value="0" min="1" placeholder="Quantité"
+                        class="quantite">
                     <button id="add-to-cart-button">Ajouter au panier</button>
                 </div>
                 <button id="close-details-button">Fermer</button>
@@ -103,31 +115,31 @@
             <div id="panier-section" class="section" style="display: none;">
                 <h2 id="cart-title">Panier</h2>
                 <table class="cart-items">
-                    <!-- Items will be dynamically added here -->
+                    <!-- Ajoute de facon dynamique -->
                 </table>
-                <div class="cart-total">
+                <div class="cart-total" id="cart-total">
                     <strong>Total: </strong><span class="cart-total-price">0.00</span>
                 </div>
                 <button class="btn btn-purchase" type="button" id="acheter-button">Acheter</button>
             </div>
 
             <div id="contact-section" class="section" style="display: none;">
-                <h2>Contactez-nous</h2>
+                <h2 id="contact-title">Contactez-nous</h2>
                 <p id="contact-message">Nous sommes ravis de vous aider et de répondre à toutes vos questions !<br>
                     Que vous ayez des préoccupations, des suggestions ou des demandes spécifiques, n'hésitez pas à nous
                     contacter.</p>
-                <h2>Notre Adresse :</h2>
-                <p>
+                <h2 id="notre-adresse">Notre Adresse :</h2>
+                <p id="contact-adress">
                     Locas Pépinière<br>
                     123 Avenue des Jardins<br>
                     75000 Paris, France<br>
                 </p>
 
                 <div class="contact-info">
-                    <p><strong>Email :</strong></p>
+                    <p id="email"><strong>Email :</strong></p>
                     <a href="mailto:contact@locas-pepiniere.fr">contact@locas-pepiniere.fr</a>
 
-                    <p><strong>Téléphone :</strong></p>
+                    <p id="phone"><strong>Téléphone :</strong></p>
                     <p>438-329-2057</p>
                 </div>
             </div>
@@ -138,10 +150,16 @@
         </main>
 
         <footer>
-            <a href="#default" class="logo">Locas Pépinière</a>
-            <p>©2024 Locas Pépinière</p>
-            <a href="#contact" class="nav-link" data-section="contact">Contactez-nous</a>
-            <a href="#garantie" class="nav-link" data-section="garantie">Garantie</a>
+            <div class="footer-logo">
+                <a href="#home" class="logo" id="logo-title">Locas Pépinière</a>
+            </div>
+            <div class="footer-text">
+                <p>©2024 Locas Pépinière</p>
+            </div>
+            <div class="footer-links">
+                <a href="#contact" class="nav-link" data-section="contact">Contactez-nous</a>
+                <a href="#garantie" class="nav-link" data-section="garantie">Garantie</a>
+            </div>
         </footer>
     </div>
     <script src="script.js"></script>
