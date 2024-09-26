@@ -598,13 +598,13 @@ const headerTopRight = document.querySelector('.header-top-right');
 
 burgerMenu.addEventListener('click', () => {
     navMenu.classList.toggle('show');
-    headerTopRight.classList.toggle('show'); // Include header-top-right in the menu
+    headerTopRight.classList.toggle('show');
 });
 
 // Close menu on close button click
 closeMenu.addEventListener('click', () => {
     navMenu.classList.remove('show');
-    headerTopRight.classList.remove('show'); // Hide header-top-right when closing
+    headerTopRight.classList.remove('show');
 });
 
 // Close menu when clicking outside
@@ -612,7 +612,7 @@ document.addEventListener('click', (event) => {
     const isClickInside = navMenu.contains(event.target) || burgerMenu.contains(event.target);
     if (!isClickInside) {
         navMenu.classList.remove('show');
-        headerTopRight.classList.remove('show'); // Hide header-top-right when clicking outside
+        headerTopRight.classList.remove('show'); 
     }
 });
 
