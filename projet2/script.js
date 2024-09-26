@@ -16,87 +16,109 @@ document.addEventListener('DOMContentLoaded', () => {
         const end = start + itemsPerPage; // Fin de la page courante
         const visibleProducts = filteredProducts.slice(start, end);
     
+        // Arbres Section
         const arbresSection = document.querySelector('#arbres-section .arbres');
         arbresSection.innerHTML = '';
     
+        // Fleurs Section
+        const fleursSection = document.querySelector('#fleurs-section .fleurs');
+        fleursSection.innerHTML = '';
+    
+        // Materiels Section
+        const materielsSection = document.querySelector('#materiels-section .materiels');
+        materielsSection.innerHTML = '';
+    
+        // Function to render a product in a given section
+        const renderProductInSection = (produit, index, section) => {
+            const produitDiv = document.createElement('div');
+            produitDiv.className = 'produit';
+    
+            const img = document.createElement('img');
+            img.src = produit.image;
+            img.alt = produit.nom;
+            produitDiv.appendChild(img);
+    
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'info';
+    
+            const name = document.createElement('h2');
+            name.textContent = produit.nom;
+            infoDiv.appendChild(name);
+    
+            const price = document.createElement('p');
+            price.textContent = `Prix: ${produit.prix}`;
+            price.id = `price-${index}`;
+            infoDiv.appendChild(price);
+    
+            const menuContextuel = document.createElement('div');
+            menuContextuel.className = 'menu-contextuel';
+            menuContextuel.style.display = 'none';
+    
+            const detailsLink = document.createElement('a');
+            detailsLink.textContent = 'Détails';
+            detailsLink.id = `detailsLink-${index}`;
+            detailsLink.href = "#";
+            menuContextuel.appendChild(detailsLink);
+    
+            const addButton = document.createElement('button');
+            addButton.textContent = 'Ajouter';
+            addButton.id = `addButton-${index}`;
+            menuContextuel.appendChild(addButton);
+    
+            const type = document.createElement('p');
+            type.textContent = `Type: ${produit.type}`;
+            menuContextuel.appendChild(type);
+    
+            const descriptionLink = document.createElement('a');
+            descriptionLink.textContent = 'Description';
+            descriptionLink.href = produit.description;
+            descriptionLink.id = `descriptionLink-${index}`;
+            descriptionLink.target = '_blank';
+            menuContextuel.appendChild(descriptionLink);
+    
+            produitDiv.appendChild(infoDiv);
+            produitDiv.appendChild(menuContextuel);
+    
+            produitDiv.addEventListener('click', (event) => {
+                showProductDetails(produit);
+            });
+    
+            produitDiv.addEventListener('mouseenter', () => {
+                menuContextuel.style.display = 'block';
+            });
+    
+            produitDiv.addEventListener('mouseleave', () => {
+                menuContextuel.style.display = 'none';
+            });
+    
+            addButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                addToCart(produit);
+            });
+    
+            section.appendChild(produitDiv);
+        };
+    
         if (visibleProducts.length === 0) {
             arbresSection.innerHTML = '<p id="arbresSection">No products available</p>';
+            fleursSection.innerHTML = '<p id="fleursSection">No products available</p>';
+            materielsSection.innerHTML = '<p id="materielsSection">No products available</p>';
         } else {
-            visibleProducts.forEach((produit, index) => { // Ajouter index ici
-                const produitDiv = document.createElement('div');
-                produitDiv.className = 'produit';
-    
-                const img = document.createElement('img');
-                img.src = produit.image;
-                img.alt = produit.nom;
-                produitDiv.appendChild(img);
-    
-                const infoDiv = document.createElement('div');
-                infoDiv.className = 'info';
-    
-                const name = document.createElement('h2');
-                name.textContent = produit.nom;
-                infoDiv.appendChild(name);
-    
-                const price = document.createElement('p'); // Créer le prix du produit
-                price.textContent = `Prix: ${produit.prix}`; // Utilisation du fichier produits.json
-                price.id = `price-${index}`; // Utilisation de backticks
-                infoDiv.appendChild(price);
-    
-                // Création du menu contextuel pour chaque produit
-                const menuContextuel = document.createElement('div');
-                menuContextuel.className = 'menu-contextuel';
-                menuContextuel.style.display = 'none';
-    
-                const detailsLink = document.createElement('a');
-                detailsLink.textContent = 'Détails';
-                detailsLink.id = `detailsLink-${index}`; // Utilisation de backticks
-                detailsLink.href = "#";
-                menuContextuel.appendChild(detailsLink);
-    
-                const addButton = document.createElement('button');
-                addButton.textContent = 'Ajouter';
-                addButton.id = `addButton-${index}`; // Utilisation de backticks
-                menuContextuel.appendChild(addButton);
-    
-                const type = document.createElement('p');
-                type.textContent = `Type: ${produit.type}`;
-                menuContextuel.appendChild(type);
-    
-                const descriptionLink = document.createElement('a');
-                descriptionLink.textContent = 'Description';
-                descriptionLink.href = produit.description;
-                descriptionLink.id = `descriptionLink-${index}`; // Utilisation de backticks
-                descriptionLink.target = '_blank';
-                menuContextuel.appendChild(descriptionLink);
-    
-                produitDiv.appendChild(infoDiv);
-                produitDiv.appendChild(menuContextuel);
-    
-                produitDiv.addEventListener('click', (event) => {
-                    showProductDetails(produit);
-                });
-    
-                produitDiv.addEventListener('mouseenter', () => {
-                    menuContextuel.style.display = 'block';
-                });
-    
-                produitDiv.addEventListener('mouseleave', () => {
-                    menuContextuel.style.display = 'none';
-                });
-    
-                addButton.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    addToCart(produit);
-                });
-    
-                arbresSection.appendChild(produitDiv);
+            visibleProducts.forEach((produit, index) => {
+                if (produit.type === 'arbre') {
+                    renderProductInSection(produit, index, arbresSection);
+                } else if (produit.type === 'fleur') {
+                    renderProductInSection(produit, index, fleursSection);
+                } else if (produit.type === 'materiel') {
+                    renderProductInSection(produit, index, materielsSection);
+                }
             });
         }
     
         document.getElementById('prev-arrow').disabled = currentPage === 0;
         document.getElementById('next-arrow').disabled = end >= filteredProducts.length;
     }
+    
     
     // Fonction pour ajouter un produit au panier
     function addToCart(produit, quantity = 1) { // Ajouter un produit au panier

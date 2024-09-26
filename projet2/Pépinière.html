@@ -27,7 +27,31 @@
         
                 <a href="#login" class="login-link" id="login-section">Admin</a>
             </div>
-        
+
+                            <!-- FORMULAIRE CONNECTION ADMIN -->
+
+            <div id="login-form" class="admin-section" style="display: none;">
+                <h2>Connexion Administrateur</h2>
+                <form id="admin-login-form">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required>
+                    <br>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                    <br>
+                    <button type="submit">Se connecter</button>
+                </form>
+                <p id="login-error-message" style="color: red; display: none;">Nom d'utilisateur ou mot de passe incorrect. Veuillez vérifier.</p>
+            </div>
+
+                                
+                    <!-- Section d'édition qui sera affichée avec les infos si la connexion est réussie -->
+                    <div id="i18n-editor-section" style="display: none;">
+                        <h2>Modification des fichiers</h2>
+                        <textarea id="i18n-editor" style="width: 100%; height: 300px;"></textarea>
+                        <button id="save-button">Sauvegarder</button>
+                    </div>
+
             <div class="header-main">
                 <div id="burger-menu" class="burger-menu">☰</div>
 
@@ -94,12 +118,22 @@
             </div>
 
             <div id="fleurs-section" class="section" style="display: none;">
-                <!-- Contenu pour la section Fleurs -->
-            </div>
+                <div class="fleurs-navigation">
+                    <button id="prev-arrow" class="arrow">⬅️</button>
+                    <div class="fleurs">
+                        <!-- Les produits seront ajoutés ici par JavaScript -->
+                    </div>
+                    <button id="next-arrow" class="arrow">➡️</button>
+                </div>            </div>
 
             <div id="materiels-section" class="section" style="display: none;">
-                <!-- Contenu pour la section Matériels -->
-            </div>
+                <div class="materiels-navigation">
+                    <button id="prev-arrow" class="arrow">⬅️</button>
+                    <div class="materiels">
+                        <!-- Les produits seront ajoutés ici par JavaScript -->
+                    </div>
+                    <button id="next-arrow" class="arrow">➡️</button>
+                </div>            </div>
 
             <div id="details-section" class="section" style="display: none;">
                 <div id="details-content" class="details-content">
