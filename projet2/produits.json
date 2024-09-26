@@ -2,7 +2,7 @@
   "produits": [
     {
       "nom": "Sapin",
-      "type": "arbre",
+      "type": "arbres",
       "prix": "40",
       "description": "https://fr.wikipedia.org/wiki/Sapin",
       "image": "images/sapin-.jpg",
@@ -11,7 +11,7 @@
     },
     {
       "nom": "Cactus", 
-      "type": "arbre",
+      "type": "arbres",
       "prix": "100",
       "description": "https://fr.wikipedia.org/wiki/Cactus",
       "image": "images/cactus.jpg",
@@ -20,7 +20,7 @@
     },
     {
       "nom": "Pin",
-      "type": "arbre",
+      "type": "arbres",
       "prix": "50",
       "description": "https://fr.wikipedia.org/wiki/Pin_(plante)",
       "image": "images/pin.jpg",
@@ -29,16 +29,16 @@
     },
     {
       "nom": "Pommier",
-      "type": "arbre",
+      "type": "arbres",
       "prix": "400",
       "description": "https://fr.wikipedia.org/wiki/Pommier",
       "image": "images/pommier.jpg",
-      "informations": "Le pommier est un arbre fruitier populaire produisant des pommes. Il est cultivé dans de nombreuses régions du monde pour ses fruits.",
+      "informations": "Le pommier est un arbres fruitier populaire produisant des pommes. Il est cultivé dans de nombreuses régions du monde pour ses fruits.",
       "stock": 25
     },
     {
       "nom": "Palmier",
-      "type": "arbre",
+      "type": "arbres",
       "prix": "400",
       "description": "https://fr.wikipedia.org/wiki/Arecaceae",
       "image": "images/palmier.jpg",
@@ -47,11 +47,11 @@
     },
     {
       "nom": "Cerisier",
-      "type": "arbre",
+      "type": "arbres",
       "prix": "400",
       "description": "https://fr.wikipedia.org/wiki/Cerisier",
       "image": "images/cerisier.jpg",
-      "informations": "Le cerisier est un arbre produisant des cerises. Il est cultivé pour ses fruits sucrés ou acides et pour son bois précieux.",
+      "informations": "Le cerisier est un arbres produisant des cerises. Il est cultivé pour ses fruits sucrés ou acides et pour son bois précieux.",
       "stock": 40
     },
     {
@@ -60,7 +60,7 @@
       "prix": "20",
       "description": "https://fr.wikipedia.org/wiki/Tulipe",
       "image": "images/tulipe.jpg",
-      "informations": "La tulipe est une fleur vivace populaire pour ses couleurs vives et sa grande variété. Elle est souvent cultivée dans les jardins et symbolise le printemps.",
+      "informations": "La tulipe est une fleurs vivace populaire pour ses couleurs vives et sa grande variété. Elle est souvent cultivée dans les jardins et symbolise le printemps.",
       "stock": 50
     },
     {
@@ -78,14 +78,14 @@
       "prix": "25",
       "description": "https://fr.wikipedia.org/wiki/Lys",
       "image": "images/lys.jpg",
-      "informations": "Le lys est une fleur élégante, souvent associée à la pureté et à la royauté. Elle est utilisée dans des compositions florales et cérémoniales.",
+      "informations": "Le lys est une fleurs élégante, souvent associée à la pureté et à la royauté. Elle est utilisée dans des compositions florales et cérémoniales.",
       "stock": 75
     },
     {
       "nom": "Marguerite",
       "type": "fleurs",
       "prix": "15",
-      "description": "https://fr.wikipedia.org/wiki/Marguerite_(plante)",
+      "description": "https://fr.wikipedia.org/wiki/Marguerite_commune",
       "image": "images/marguerite.jpg",
       "informations": "La marguerite est une plante à fleurs blanches et jaunes, très commune dans les prairies et les jardins. Elle symbolise l'innocence et la simplicité.",
       "stock": 60
@@ -105,7 +105,7 @@
       "prix": "18",
       "description": "https://fr.wikipedia.org/wiki/Violette",
       "image": "images/violette.jpg",
-      "informations": "La violette est une petite fleur parfumée qui pousse souvent dans des conditions ombragées. Elle est utilisée en parfumerie et en décoration.",
+      "informations": "La violette est une petite fleurs parfumée qui pousse souvent dans des conditions ombragées. Elle est utilisée en parfumerie et en décoration.",
       "stock": 80
     },
     {

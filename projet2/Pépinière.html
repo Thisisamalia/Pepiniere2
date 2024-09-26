@@ -27,7 +27,31 @@
         
                 <a href="#login" class="login-link" id="login-section">Admin</a>
             </div>
-        
+
+                            <!-- FORMULAIRE CONNECTION ADMIN -->
+
+            <div id="login-form" class="admin-section" style="display: none;">
+                <h2>Connexion Administrateur</h2>
+                <form id="admin-login-form">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required>
+                    <br>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                    <br>
+                    <button type="submit">Se connecter</button>
+                </form>
+                <p id="login-error-message" style="color: red; display: none;">Nom d'utilisateur ou mot de passe incorrect. Veuillez vérifier.</p>
+            </div>
+
+                                
+                    <!-- Section d'édition qui sera affichée avec les infos si la connexion est réussie -->
+                    <div id="i18n-editor-section" style="display: none;">
+                        <h2>Modification des fichiers</h2>
+                        <textarea id="i18n-editor" style="width: 100%; height: 300px;"></textarea>
+                        <button id="save-button">Sauvegarder</button>
+                    </div>
+
             <div class="header-main">
                 <div id="burger-menu" class="burger-menu">☰</div>
 
@@ -36,9 +60,9 @@
                     <nav class="nav-menu" id="nav-menu">
                         <div class="close-menu" id="close-menu">✖</div>
                         <a href="#home" class="nav-link" data-section="home" id="home-link">Accueil</a>
-                        <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link">Arbres</a>
-                        <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link">Fleurs</a>
-                        <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link">Matériels</a>
+                        <a href="#arbres" class="nav-link" data-section="arbres" id="trees-link" onclick="filterByCategory('arbres')">Arbres</a>
+                        <a href="#fleurs" class="nav-link" data-section="fleurs" id="flowers-link" onclick="filterByCategory('fleurs')">Fleurs</a>
+                        <a href="#materiels" class="nav-link" data-section="materiels" id="materials-link" onclick="filterByCategory('materiels')">Matériels</a>
                         <a href="#panier" class="nav-link" data-section="panier" id="cart-link">
                             <img src="images/cart.svg" alt="Panier" class="panier-image">
                             <p id="quantity">0</p>
@@ -51,8 +75,6 @@
                 </div>
             </div>
         </div>
-        
-        
 
         <main id="main-content">
             <div id="home-section" class="section">
@@ -71,11 +93,9 @@
                             </div>
                             <h2 id="support-title">Support Sustainable Farming</h2>
                             <p id="support-paragraph">
-                                I'm a paragraph. Click here to add your own text and edit me.<br>
-                                It’s easy. Just click “Edit Text” or double click me to add your own content and make
-                                changes to the font.<br>
-                                I’m a great place for you to tell a story and let your users know a little more about
-                                you.
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br>
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit<br>
+                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt
                             </p>
                             <button id="shop-button">Magasiner</button>
                         </div>
@@ -94,12 +114,22 @@
             </div>
 
             <div id="fleurs-section" class="section" style="display: none;">
-                <!-- Contenu pour la section Fleurs -->
-            </div>
+                <div class="fleurs-navigation">
+                    <button id="prev-arrow" class="arrow">⬅️</button>
+                    <div class="fleurs">
+                        <!-- Les produits seront ajoutés ici par JavaScript -->
+                    </div>
+                    <button id="next-arrow" class="arrow">➡️</button>
+                </div>            </div>
 
             <div id="materiels-section" class="section" style="display: none;">
-                <!-- Contenu pour la section Matériels -->
-            </div>
+                <div class="materiels-navigation">
+                    <button id="prev-arrow" class="arrow">⬅️</button>
+                    <div class="materiels">
+                        <!-- Les produits seront ajoutés ici par JavaScript -->
+                    </div>
+                    <button id="next-arrow" class="arrow">➡️</button>
+                </div>            </div>
 
             <div id="details-section" class="section" style="display: none;">
                 <div id="details-content" class="details-content">
