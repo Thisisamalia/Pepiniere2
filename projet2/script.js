@@ -105,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
             materielsSection.innerHTML = '<p id="materielsSection">No products available</p>';
         } else {
             visibleProducts.forEach((produit, index) => {
-                if (produit.type === 'arbre') {
+                if (produit.type === 'arbres') {
                     renderProductInSection(produit, index, arbresSection);
-                } else if (produit.type === 'fleur') {
+                } else if (produit.type === 'fleurs') {
                     renderProductInSection(produit, index, fleursSection);
-                } else if (produit.type === 'materiel') {
+                } else if (produit.type === 'materiels') {
                     renderProductInSection(produit, index, materielsSection);
                 }
             });
@@ -510,9 +510,9 @@ document.querySelectorAll('.lang-radio').forEach(radio => {
 
     //Fonction pour filtrer les produits en fonction de la catégorie sélectionnée
     function filterByCategory(value) {
-        const buttons = document.querySelectorAll(".button-value");
+        const buttons = document.querySelectorAll(".nav-link");
         buttons.forEach(button => {
-            button.classList.toggle("active", value.toUpperCase() === button.innerText.toUpperCase());
+            button.classList.toggle("active", value.toUpperCase() === button.dataset.section.toUpperCase());
         });
         filterProducts(document.getElementById('search-input').value, value);
     }
